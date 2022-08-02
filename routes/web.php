@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +31,5 @@ Route::middleware([
 });
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/contracts', [ContractController::class, 'index'])->name('contracts.index');
+Route::get('/quotes', [QuotesController::class, 'index'])->name('quotes.index');

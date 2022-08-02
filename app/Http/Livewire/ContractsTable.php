@@ -2,43 +2,46 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\User;
+use App\Models\Contract;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\NumberColumn;
+use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
-class UsersTable extends LivewireDatatable
+class ContractsTable extends LivewireDatatable
 {
-    public $model = User::class;
+    public $model = Contract::class;
+    public $contractNumbers;
     public $exportable = true;
     public $complex = true;
 
     public function columns()
     {
         return [
-            
             NumberColumn::name('id')
             ->label('ID'),
-
-            Column::name('name')
-            ->defaultSort('asc')
+    
+            Column::name('contract_number')
             ->searchable()
             ->hideable()
-            ->filterable(),
+            //->filterable(['SvFjsEnV', 'ke1YitGh']),
+            ->filterable($this->contractNumbers),
             
-            Column::name('email')
-                ->label('email')
-                ->group('group1')
+            Column::name('description')
+                ->label('description')
                 ->searchable()
                 ->hideable()
                 ->filterable(),
 
-            DateColumn::name('email_verified_at')
-                ->label('verified_at')
+            BooleanColumn::name('active')
+                ->label('active')
+                ->filterable(),
+    
+            DateColumn::name('expiration_date')
+                ->label('expiration_date')
                 ->filterable() 
-
         ];
-    }
 
+    }
 }
