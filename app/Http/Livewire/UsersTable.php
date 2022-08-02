@@ -36,8 +36,11 @@ class UsersTable extends LivewireDatatable
 
             DateColumn::name('email_verified_at')
                 ->label('verified_at')
-                ->filterable() 
+                ->filterable(),
 
+            Column::callback(['id', 'name'], function ($id, $name) {
+                    return view('users.actions', ['id' => $id, 'name' => $name]);
+                })->unsortable()
         ];
     }
 

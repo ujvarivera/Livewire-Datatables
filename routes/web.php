@@ -31,5 +31,6 @@ Route::middleware([
 });
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 Route::get('/contracts', [ContractController::class, 'index'])->name('contracts.index');
 Route::get('/quotes', [QuotesController::class, 'index'])->name('quotes.index');
